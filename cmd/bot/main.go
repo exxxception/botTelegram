@@ -1,7 +1,19 @@
 package main
 
-import "fmt"
+import (
+	"github.com/exxxception/pkg/telegram"
+	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api"
+	"log"
+)
 
 func main() {
-	fmt.Println("Hi! This is pet-project telegram bot")
+	bot, err := tgbotapi.NewBotAPI("")
+	if err != nil {
+		log.Panic(err)
+	}
+
+	bot.Debug = false
+
+	telegramBot := telegram.NewBot(bot)
+	telegramBot.Start()
 }
